@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="calsi.css">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .calculator {
+        width: 300px;
+        height: 500px;
+        box-shadow: 4px 4px 30px rgba(0, 0, 0, 0.3);
+        border-radius: 12px;
+        background: #0d0d0d;
+        ;
+        overflow: hidden;
+    }
+
+    .screen {
+        width: 100%;
+        height: 150px;
+        border: none;
+        border-radius: 12px;
+        font-size: 2rem;
+        color: rgb(236, 235, 235);
+        background: rgb(14, 1, 100);
+        text-align: right;
+        pointer-events: none;
+    }
+
+    .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 20px;
+    }
+
+    button {
+        width: 60px;
+        height: 52px;
+        font-size: 22px;
+        border-radius: 5px;
+        margin: 2.5px;
+        border: 1px solid;
+        cursor: pointer;
+    }
+
+    button:active {
+        opacity: 0.8;
+    }
+
+    .btn-yellow {
+        background: rgb(222, 219, 26);
+    }
+
+    .btn-grey {
+        background: rgba(72, 71, 71, 0.747);
+        color: antiquewhite;
+    }
+
+    .btn-equal {
+        background: rgb(163, 133, 246);
+    }
+
+    .btn-clear {
+        background: rgb(230, 68, 4);
+    }
+</style>
+
+<body>
+
+    <section class="calculator">
+        <form>
+            <input type="text" class="screen">
+        </form>
+        <div class="buttons">
+            <button type="button" class="btn btn-yellow" data-num="*">*</button>
+            <button type="button" class="btn btn-yellow" data-num="/">/</button>
+            <button type="button" class="btn btn-yellow" data-num="-">-</button>
+            <button type="button" class="btn btn-yellow" data-num="+">+</button>
+
+            <button type="button" class="btn btn-grey" data-num="0">0</button>
+            <button type="button" class="btn btn-grey" data-num="1">1</button>
+            <button type="button" class="btn btn-grey" data-num="2">2</button>
+            <button type="button" class="btn btn-grey" data-num="3">3</button>
+            <button type="button" class="btn btn-grey" data-num="4">4</button>
+            <button type="button" class="btn btn-grey" data-num="5">5</button>
+            <button type="button" class="btn btn-grey" data-num="6">6</button>
+            <button type="button" class="btn btn-grey" data-num="7">7</button>
+            <button type="button" class="btn btn-grey" data-num="8">8</button>
+            <button type="button" class="btn btn-grey" data-num="9">9</button>
+            <button type="button" class="btn btn-grey" data-num=".">.</button>
+
+            <button type="button" class="btn btn-equal">=</button>
+            <button type="button" class="btn btn-clear">C</button>
+        </div>
+    </section>
+
+    
+    <script>
+        let string = "";
+        let buttons = document.querySelectorAll('.btn');
+        Array.from(buttons).forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+                if (e.target.innerHTML == "=") {
+                    string = eval(string);
+                    document.querySelector('input').value = string;
+                } else if (e.target.innerHTML == "C") {
+                    string = "";
+                    document.querySelector('input').value = string;
+                } else {
+                    console.log(e.target)
+                    string = string + e.target.innerHTML;
+                    document.querySelector('input').value = string;
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
